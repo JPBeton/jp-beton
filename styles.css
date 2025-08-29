@@ -62,3 +62,29 @@ p{line-height:1.6}p.muted{color:var(--muted)}
 .lb-inner img{width:100%;height:auto;max-height:78vh;object-fit:contain;display:block;border-radius:8px}
 .lb-caption{color:#fff;text-align:center;font-size:15px}
 .lb-close{position:absolute;top:14px;right:18px;background:transparent;border:0;color:#fff;font-size:28px;cursor:pointer}
+
+.social-card {
+  display: inline-block;
+  padding: 12px 18px;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  transition: all 0.2s ease;
+  margin-top: 12px;
+}
+
+.social-card a {
+  text-decoration: none;
+  color: #3b5998; /* Facebook modrá */
+  font-weight: bold;
+}
+
+.social-card:hover {
+  background: #3b5998;
+  color: #fff;
+}
+
+.social-card:hover a {
+  color: #fff;
+}
