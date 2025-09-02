@@ -114,7 +114,7 @@ p{line-height:1.6}p.muted{color:var(--muted)}
 
 .footer__col {
   flex: 1;
-  min-width: 200px;
+  min-width: 220px;
   margin: 10px;
 }
 
