@@ -80,13 +80,19 @@
         </div>
       </div>
       
-      <form class="contact__form" action="mailto:jankovsky.pavel89@seznam.cz" method="post" enctype="text/plain">
+      <form id="contact-form" class="contact__form">
         <label for="jmeno">Jméno</label>
-        <input id="jmeno" name="Jméno" required>
+        <input id="jmeno" name="from_name" required>
+
+        <label for="email">E-mail</label>
+        <input id="email" name="reply_to" type="email" required>
+        
         <label for="telefon">Telefon</label>
-        <input id="telefon" name="Telefon" required>
+        <input id="telefon" name="phone" required>
+        
         <label for="zprava">Zpráva</label>
-        <textarea id="zprava" name="Zpráva" rows="5" required></textarea>
+        <textarea id="zprava" name="message" rows="5" required></textarea>
+        
         <button class="btn btn-primary" type="submit">Odeslat poptávku</button>
       </form>
     </div>
@@ -117,6 +123,54 @@
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
+
+  <!-- EmailJS knihovna -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+<script>
+  (function () {
+    // 1) Inicializace EmailJS – DOPLŇ svůj public key:
+    emailjs.init({ publicKey: 'HOmFZFi6MdKWGXzhN' });
+
+    // 2) Ošetření odeslání formuláře
+    const form = document.getElementById('contact-form');
+
+    if (form) {
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        const submitBtn = form.querySelector('button[type="submit"]');
+        const originalText = submitBtn ? submitBtn.textContent : '';
+
+        if (submitBtn) {
+          submitBtn.disabled = true;
+          submitBtn.textContent = 'Odesílám...';
+        }
+
+        // 3) Odeslání přes EmailJS – DOPLŇ svůj serviceId a templateId:
+        emailjs
+          .sendForm('service_b0qy9qf', 'template_4tgl7n9', form)
+          .then(() => {
+            if (submitBtn) {
+              submitBtn.disabled = false;
+              submitBtn.textContent = originalText;
+            }
+            form.reset();
+            alert('Děkujeme! Vaše poptávka byla úspěšně odeslána.');
+          })
+          .catch((err) => {
+            console.error('EmailJS error:', err);
+            if (submitBtn) {
+              submitBtn.disabled = false;
+              submitBtn.textContent = originalText;
+            }
+            alert('Odeslání se nepodařilo. Zkuste to prosím znovu nebo nám zavolejte.');
+          });
+      });
+    }
+  })();
+</script>
+
   
 </body>
 </html>
