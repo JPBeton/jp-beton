@@ -116,6 +116,7 @@
   </div>
 </footer>
 
+  <!-- EmailJS knihovna -->
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
   <script src="script.js"></script>
@@ -124,10 +125,7 @@
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
 
-  <!-- EmailJS knihovna -->
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-
-<script>
+  <script>
   (function () {
     // 1) Inicializace EmailJS – DOPLŇ svůj public key:
     emailjs.init({ publicKey: 'HOmFZFi6MdKWGXzhN' });
