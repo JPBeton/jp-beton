@@ -124,51 +124,6 @@
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
-
-  <script>
-  (function () {
-    // 1) Inicializace EmailJS – DOPLŇ svůj public key:
-    emailjs.init({ publicKey: 'HOmFZFi6MdKWGXzhN' });
-
-    // 2) Ošetření odeslání formuláře
-    const form = document.getElementById('contact-form');
-
-    if (form) {
-      form.addEventListener('submit', function (e) {
-        e.preventDefault();
-
-        const submitBtn = form.querySelector('button[type="submit"]');
-        const originalText = submitBtn ? submitBtn.textContent : '';
-
-        if (submitBtn) {
-          submitBtn.disabled = true;
-          submitBtn.textContent = 'Odesílám...';
-        }
-
-        // 3) Odeslání přes EmailJS – DOPLŇ svůj serviceId a templateId:
-        emailjs
-          .sendForm('service_b0qy9qf', 'template_4tgl7n9', form)
-          .then(() => {
-            if (submitBtn) {
-              submitBtn.disabled = false;
-              submitBtn.textContent = originalText;
-            }
-            form.reset();
-            alert('Děkujeme! Vaše poptávka byla úspěšně odeslána.');
-          })
-          .catch((err) => {
-            console.error('EmailJS error:', err);
-            if (submitBtn) {
-              submitBtn.disabled = false;
-              submitBtn.textContent = originalText;
-            }
-            alert('Odeslání se nepodařilo. Zkuste to prosím znovu nebo nám zavolejte.');
-          });
-      });
-    }
-  })();
-</script>
-
   
 </body>
 </html>
